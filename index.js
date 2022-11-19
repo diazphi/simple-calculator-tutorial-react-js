@@ -42,9 +42,9 @@ const Calculater = () => {
     );
   };
 
-  // This apps developed by Philip C. Diaz
+  // Author: Philip C. Diaz
   // This apps is intended only for youtube channel tutorial
-  // Visit https://www.youtube.com/@diazphilip
+  // Visit my YT Channel https://www.youtube.com/@diazphilip
   
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(<Calculater />);
