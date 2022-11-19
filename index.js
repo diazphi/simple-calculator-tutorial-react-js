@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
   
 const Calculater = () => {
-    const calcnum = [0,1,2,3,4,5,6,7,8,9];
-    const title = 'My 1st ReactJS Calculator';
+    const calcnum = [0,1,2,3,4,5,6,7,8,9,'Del','=','+','-','*'];
+    const title = 'Simple ReactJs Calculator';
     const [calcvalue, setcalcvalue] = useState('');
     const handleChange = event => {
         setcalcvalue(event.target.value);
@@ -12,12 +12,22 @@ const Calculater = () => {
       };
     const handleClick = event => {
         event.preventDefault();
-    
-        // 👇️ value of input field
-        console.log('old value: ', calcvalue);
-        console.log(event.target.getAttribute('data-value'));
-        // 👇️ set value of input field
-        setcalcvalue(event.target.getAttribute('data-value'));
+        let charnumber = ['0','1','2','3','4','5','6','7','8','9'];
+        if(charnumber.includes(event.target.getAttribute('data-value'))) {
+            setcalcvalue(calcvalue+event.target.getAttribute('data-value'));
+        } else {
+            if(event.target.getAttribute('data-value') === 'Del') {
+                console.log('del');
+            } else if (event.target.getAttribute('data-value') === '=') {
+                console.log('=');
+            } else if (event.target.getAttribute('data-value') === '+') {
+                console.log('+');
+            } else if (event.target.getAttribute('data-value') === '-') {
+                console.log('-');
+            } else if (event.target.getAttribute('data-value') === '*') {
+                console.log('*');
+            }
+        }
       };
     return (
         <div className='calc-master-container'>
