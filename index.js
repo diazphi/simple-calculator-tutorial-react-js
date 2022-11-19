@@ -1,27 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
   
 const Calculater = () => {
     const calcnum = [0,1,2,3,4,5,6,7,8,9];
     const title = 'My 1st ReactJS Calculator';
-    let calcresult = 0;
-
+    const [calcvalue, setcalcvalue] = useState('');
+    const handleChange = event => {
+        setcalcvalue(event.target.value);
+        console.log(event.target.value);
+      };
+    const handleClick = event => {
+        event.preventDefault();
+    
+        // 👇️ value of input field
+        console.log('old value: ', calcvalue);
+        console.log(event.target.getAttribute('data-value'));
+        // 👇️ set value of input field
+        setcalcvalue(event.target.getAttribute('data-value'));
+      };
     return (
         <div className='calc-master-container'>
           <h2 className='calc-title'>{title}</h2>
-          <input type='number' className='calc-result' defaultValue={calcresult} />
+          <input type='number' className='calc-result' defaultValue={calcvalue} onChange={handleChange} />
           <div className='calc-container'>
                 {calcnum.reverse().map((num) => (
-                    <CalcBtn key={num} text={num} />
+                    <button key={num} data-value={num} className='calc-keypad' onClick={handleClick}>{num}</button>
                 ))}
           </div>
         </div>
     );
   };
-  const CalcBtn = (props) => {
-    return <button className='calc-keypad' onClick={() => console.log(props.text)}>{props.text}</button>;
-  };
+
   // ========================================
   
   const root = ReactDOM.createRoot(document.getElementById("root"));
